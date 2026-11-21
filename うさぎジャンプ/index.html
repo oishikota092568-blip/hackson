@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>うさぎジャンプ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>🐰 うさぎジャンプ</h1>
+  <div class="card" id="viewE">
+    <b>① 編集画面</b>
+    <div class="row">
+      <label class="btn" for="f">画像を選ぶ</label>
+      <input id="f" type="file" accept="image/*">
+      <button id="ear" class="sub" disabled>ウサギに変身</button>
+    </div>
+    <div class="row">
+      <label class="hint"><input type="checkbox" id="cut" checked> 背景を透過</label>
+      <label class="hint">しきい値 <input type="range" id="tol" min="10" max="140" value="55"></label>
+    </div>
+    <div class="row">
+      <label class="hint">耳の長さ <input type="range" id="earLen" min="30" max="100" value="60"></label>
+      <label class="hint">顔の大きさ <input type="range" id="faceW" min="25" max="70" value="45"></label>
+    </div>
+    <div class="row"><b class="hint">うさみみセット登録（左右の耳画像）</b></div>
+    <div class="row">
+      <label class="btn" for="earL">左耳画像</label><input id="earL" type="file" accept="image/*"><span id="earLn" class="hint">未選択</span>
+      <label class="btn" for="earR">右耳画像</label><input id="earR" type="file" accept="image/*"><span id="earRn" class="hint">未選択</span>
+      <button id="earAdd" class="sub">セットに追加</button>
+    </div>
+    <div class="row">
+      <label class="hint">使う耳
+        <select id="earSel"><option value="std">標準の耳</option><option value="rand">🎲 ランダム</option></select>
+      </label>
+      <button id="earDel" class="sub" disabled>選択中のセットを削除</button>
+      <label class="hint"><input type="checkbox" id="ecut" checked> 耳画像の背景を透過</label>
+    </div>
+    <div class="row">
+      <label class="hint">耳の角度 <input type="range" id="earAng" min="-30" max="60" value="9"> <span id="earAngV">9°</span></label>
+    </div>
+    <p class="hint" id="msg">画像を選んでください。ウサギに変身後は、顔の中心を画像上でタップ/ドラッグして調整できます。</p>
+    <canvas id="pv" width="360" height="420" style="max-width:360px;margin:0 auto;background:#fafafc"></canvas>
+    <div class="row"><button id="toJump" disabled>② ジャンプ画面へ →</button></div>
+  </div>
+  <div class="card" id="viewJ" style="display:none">
+    <b>② ジャンプ画面</b>
+    <div class="row">
+      <button id="jump">ジャンプ！</button>
+      <button id="back" class="sub">← 編集に戻る</button>
+      <label class="hint"><input type="checkbox" id="forceEvt"> イベント必ず発生(テスト)</label>
+    </div>
+    <canvas id="c" width="720" height="420" style="margin-top:8px"></canvas>
+    <div class="dist" id="dist"></div>
+    <div class="row"><span class="hint" id="info"></span><span class="hint" id="best"></span></div>
+  </div>
+  <script src="face-api.js"></script>
+  <script src="db.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
